@@ -19,7 +19,7 @@
 %% API functions
 %%====================================================================
 
--spec start_link() -> {ok, pid()}.
+-spec start_link() -> contacts_crud_types:startlink_ret().
 start_link() ->
     supervisor:start_link({local, ?SERVER}, ?MODULE, []).
 

@@ -34,7 +34,7 @@ execute_equery(QueryString, Values) ->
         gen_server:call(?MODULE, {execute_equery, QueryString, Values}),
     Result.
 
--spec start_link() -> startlink_ret().
+-spec start_link() -> contacts_crud_types:startlink_ret().
 start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
