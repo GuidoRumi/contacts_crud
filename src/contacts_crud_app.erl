@@ -15,6 +15,7 @@
 %%====================================================================
 
 start(_StartType, _StartArgs) ->
+    ok = application:ensure_started(epgsql, permanent),
     contacts_crud_sup:start_link().
 
 %%--------------------------------------------------------------------

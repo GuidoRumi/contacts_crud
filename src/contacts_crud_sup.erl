@@ -19,6 +19,7 @@
 %% API functions
 %%====================================================================
 
+-spec start_link() -> {ok, pid()}.
 start_link() ->
     supervisor:start_link({local, ?SERVER}, ?MODULE, []).
 
@@ -30,8 +31,13 @@ start_link() ->
 %% Optional keys are restart, shutdown, type, modules.
 %% Before OTP 18 tuples must be used to specify a child. e.g.
 %% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
+
+-spec init([]) ->
+    {ok, {{supervisor:strategy(), 10, 10}, [supervisor:child_spec()]}}.
 init([]) ->
-    {ok, { {one_for_all, 0, 1}, []} }.
+    Procs = [{contacts_crud_conn_mgr, {contacts_crud_conn_mgr, start_link, []},
+    permanent, 5000, worker, [contacts_crud_conn_mgr]}],
+    {ok, {{one_for_one, 10, 10}, Procs}}.
 
 %%====================================================================
 %% Internal functions
