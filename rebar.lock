@@ -1,1 +1,16 @@
-[].
+[{<<"cowboy">>,
+  {git,"https://github.com/ninenines/cowboy.git",
+       {ref,"28d3515d716d32d1700fa21e904c613c139d4019"}},
+  0},
+ {<<"cowlib">>,
+  {git,"https://github.com/ninenines/cowlib",
+       {ref,"56a3fee151340212c1b7a92344e4ece07fc15010"}},
+  1},
+ {<<"epgsql">>,
+  {git,"https://github.com/epgsql/epgsql.git",
+       {ref,"16801edef831e38fa7d1ebda9955bfc86c09a7c5"}},
+  0},
+ {<<"ranch">>,
+  {git,"https://github.com/ninenines/ranch",
+       {ref,"8eaae552ec520605b7f4b0e5943256d2b5e3621c"}},
+  1}].
