@@ -37,12 +37,12 @@ API
 
 
 |  URL Path|  Method | Payload  | Status Code  |  Response Body |
-|---|---|---|---|---|---|
+|---|---|---|---|---|
 | /contacts  |  GET |   | 200  |   List of users ordered by surname|
-| /contacts | POST  | JSON with: email, name, surname, phone_number as keys |  204, 400 if payload is malformed or 409 if email already exists |
-| /contacts/:email | PUT |  JSON with: name, surname, phone_number as keys | 204, 404 if resource is not found, 400 if payload is malformed |  
+| /contacts | POST  | JSON with: email, name, surname, phone_number as keys |  204, 400 if payload is malformed or 409 if email already exists | |
+| /contacts/:email | PUT |  JSON with: name, surname, phone_number as keys | 204, 404 if resource is not found, 400 if payload is malformed | |
 |/contacts/surname/:surname | GET | | 200, 404 if resource is not found | JSON of one user with matching surname|
-|/contacts/delete/:email|DELETE| | 204, 404 if resource is not found 
+|/contacts/delete/:email|DELETE| | 204, 404 if resource is not found | |
 
 **Note**: DELETE /contacts/delete/:email doesn't actually deletes the resource. It marks it as non active and there's a croned task that removes them every 10 minutes.
 
