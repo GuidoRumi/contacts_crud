@@ -106,6 +106,7 @@ test_create_then_list(_Config) ->
     ).
 
 test_create_wrong_keys(_Config) ->
+    %% Tries to create a record with no email
     WrongMap = #{
         <<"wrongemail">> => <<"user@example.com">>,
         <<"name">> => <<"examplename">>,
@@ -131,6 +132,7 @@ test_create_wrong_keys(_Config) ->
 
 test_create_duplicate_email(_Config) ->
     create_record_1(),
+    %% Tries to create a record with the same email
     JsonRecord = jiffy:encode(?CONTACT_MAP_1),
     URL = <<"http://localhost:8080/contacts">>,
     Headers = [{<<"Content-Type">>, <<"application/json">>}],
@@ -152,6 +154,7 @@ test_create_duplicate_email(_Config) ->
 test_update_then_find_surname(_Config) ->
     %Creates record
     create_record_1(),
+    %%Updates it
     JsonUpdateRecord = jiffy:encode(?CONTACT_UPDATE_MAP_1),
     UpdateURL = <<"http://localhost:8080/contacts/user@example.com">>,
     Headers = [{<<"Content-Type">>, <<"application/json">>}],
@@ -168,7 +171,7 @@ test_update_then_find_surname(_Config) ->
         <<>>,
         UpdateBody
     ),
-    %% Finds surname
+    %% Finds new surname
     FindURL = <<"http://localhost:8080/contacts/surname/">>,
     FindUrlSurname = <<FindURL/bytes, ?CONTACT_UPDATE_MAP_1_SURNAME/bytes>>,
     UpdatePayload = JsonUpdateRecord,
@@ -186,6 +189,7 @@ test_update_then_find_surname(_Config) ->
 
 
 test_delete_not_found(_Config) ->
+    %% Tries to delete an unexistant record
     Url = <<"http://localhost:8080/contacts/delete/">>,
     ConcatUrl = <<Url/bytes, ?CONTACT_1_EMAIL/bytes>>,
     Headers = [{<<"Content-Type">>, <<"application/json">>}],
@@ -200,6 +204,7 @@ test_delete_not_found(_Config) ->
 
 test_delete(_Config) ->
     create_record_1(),
+    % Delete
     Url = <<"http://localhost:8080/contacts/delete/">>,
     ConcatUrl = <<Url/bytes, ?CONTACT_1_EMAIL/bytes>>,
     Headers = [{<<"Content-Type">>, <<"application/json">>}],

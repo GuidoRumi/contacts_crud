@@ -19,7 +19,8 @@ start(_StartType, _StartArgs) ->
     Dispatch = cowboy_router:compile([
         {'_', [
             {"/contacts", contacts_crud_http_handler, [contacts]},
-            {"/contacts/surname/:surname", contacts_crud_http_handler, [find_surname]},
+            {"/contacts/surname/:surname",
+                contacts_crud_http_handler, [find_surname]},
             {"/contacts/delete/:email", contacts_crud_http_handler, [delete]},
             {"/contacts/:email", contacts_crud_http_handler, [update]}
         ]}
