@@ -12,13 +12,9 @@ all() ->
     ].
 
 init_per_suite(Config) ->
-    ?assertEqual(
-        ok,
-        application:ensure_started(epgsql, permanent)
-    ),
-    ?assertEqual(
-        ok,
-        application:ensure_started(contacts_crud, permanent)
+    ?assertMatch(
+        {ok, _},
+        application:ensure_all_started(contacts_crud, permanent)
     ),
     Config.
 
