@@ -5,7 +5,9 @@
   {mod, { contacts_crud_app, []}},
   {applications,
    [kernel,
-    stdlib
+    stdlib,
+    epgsql,
+    cowboy
    ]},
   {env,[]},
   {modules, []},
